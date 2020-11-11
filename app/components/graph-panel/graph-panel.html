@@ -1,0 +1,18 @@
+<div ref="container" class="graph-container">
+  <div ref="title" class="graph-title">
+    <h1>Please Select a Lake</h1>
+  </div>
+  <div class="graph-body">
+    <div class="graph-content-container">
+      <canvas ref="content" class="graph-content"></canvas>
+    </div>
+    <div ref="footer" class="graph-footer">
+    	<label id="cl-lab" for="sld">Cloud coverage [%]</label><span id="cl-val"></span>
+  		<input ref="cloudSlider" id="sld" type="range" step="1" value="100" class="slider" name="Cloud Slider">
+  		<label id="start-lab" for="start">Start date</label>
+  		<input ref="startDate" type="date" id="start" name="range-start" class="date-field">
+  		<label id="end-lab" for="end">End date</label>
+   		<input ref="endDate" type="date" id="end" name="range-end" class="date-field">
+  	</div>
+  </div>
+</div>

@@ -1,0 +1,4 @@
+*.env
+**.log
+/public/bundle.js
+/node_modules

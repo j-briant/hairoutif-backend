@@ -1,0 +1,16 @@
+@import '../../_variables.scss';
+
+    #logoContainer {
+      position: absolute;
+      z-index:1000;
+      top: $panelMargin;
+      right: $panelMargin;
+      background-color: none;
+      border: none;
+      width: auto;
+    }
+
+    .logo {
+      width: auto;
+      height: 50px;
+    }

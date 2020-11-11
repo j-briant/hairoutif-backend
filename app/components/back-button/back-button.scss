@@ -1,0 +1,30 @@
+@import '../../_variables.scss';
+
+.button-container {
+	position: absolute;
+	top: $panelMargin;
+	left: $panelMargin;
+	background: transparent;
+	z-index: 1000;
+	box-sizing: border-box;
+	font-family: $fontNormal;
+	cursor: pointer;
+
+
+	button {
+		background: $midDark;
+		color: $offWhite;
+		border: 3px $lightDark solid;
+		border-radius: 4px;
+		padding: 8px;
+		text-transform: uppercase;
+		text-align: center;
+	}
+
+	button:hover {
+		background: $offWhite;
+		color: $midDark;
+		cursor: pointer;
+	}
+
+}
