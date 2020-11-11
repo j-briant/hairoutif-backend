@@ -69,4 +69,4 @@ npm run serve
 Hopefully, no errors!
 Then you can visit [http://localhost:8080/](http://localhost:8080/).
 
-<img src="https://ih1.redbubble.net/image.1323559437.3240/pp,840x830-pad,1000x1000,f8f8f8.jpg" alt="aw yiss" width="300"/>
+<img src="https://ih1.redbubble.net/image.1323559437.3240/pp,840x830-pad,1000x1000,f8f8f8.jpg" alt="aw yiss" width="300"/># base-app
