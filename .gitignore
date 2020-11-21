@@ -2,3 +2,4 @@
 **.log
 /public/bundle.js
 /node_modules
+/redis-6.0.9
