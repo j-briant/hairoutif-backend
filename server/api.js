@@ -32,33 +32,34 @@ router.get('/time', async ctx => {
 })
 
 // Get AOI geometry by id route
-aoiGeomRoute = 
+quoifeurGeomRoute = 
 {
 	method: 'get',
-	path: '/aoi/geom/:id',
-	validate: idValidator,
+	path: '/locations',
 	handler: async ctx => {
-		const id = ctx.params.id
-		const result = await database.queryAOI(id)
+		const result = await database.queryLocations()
 		if (result.length === 0) {ctx.throw(404)}
 
 		// Add row metadata as geojson properties
-		let boundaries = JSON.parse(result.st_asgeojson)
-		boundaries.properties = {name: result.name, id: result.id}
+		const markers = result.map((row) => {
+			let mark = JSON.parse(row.st_asgeojson)
+			mark.properties = {name: row.name, id: row.id}
+			return mark
+		})
 		
-		ctx.body = boundaries
+		ctx.body = markers
 	}
 }
 
 // Get surface time series route
-surfacesRoute = 
+adressRoute = 
 {
 	method: 'get',
-	path: '/aoi/surfaces/:id',
+	path: '/locations/:id',
 	validate: idValidator,
 	handler: async ctx => {
 		const id = ctx.params.id
-		const result = await database.queryTimeSeries(id)
+		const result = await database.queryAdress(id)
 		if (result.length === 0) {ctx.throw(404)}
 
 		ctx.body = result
@@ -128,6 +129,6 @@ router.get('/aoi/surfaces/:id', idValidator, async ctx => {
 
 */
 
-router.route([aoiGeomRoute, centroidsRoute, surfacesRoute])
+router.route([quoifeurGeomRoute, adressRoute])
 
 module.exports = router

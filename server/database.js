@@ -21,23 +21,23 @@ module.exports = {
 	},
 
 	/** Query the geometry of each AOI */
-	queryAOI: async (aid) => {
-	const AOIQuery = `
+	queryLocations: async () => {
+	const locationQuery = `
 		SELECT ST_AsGeoJSON(geom), name, id
-		FROM aoi
-		WHERE id = $1;`
-	const result = await client.query(AOIQuery, [ aid ])
-	return result.rows[0]
+		FROM locations;`
+	const result = await client.query(locationQuery)
+	return result.rows
 	},
 
 
 	/** Query the centroid of each polygon */
-	queryCentroid: async () => {
-	const centroidQuery = `
-		SELECT ST_AsGeoJSON(ST_Centroid(geom)), name, id
-		FROM aoi;`
-	const result = await client.query(centroidQuery)
-	return result.rows
+	queryAdress: async (id) => {
+	const adressQuery = `
+		SELECT p_code, city, name, id
+		FROM locations
+		WHERE id = $1;`
+	const result = await client.query(adressQuery, [id])
+	return result.rows[0]
 	},
 
 	/** Query the water surface of an aoi, by id */
