@@ -31,25 +31,13 @@ module.exports = {
 
 
 	/** Query the centroid of each polygon */
-	queryAdress: async (id) => {
+	queryDescription: async (id) => {
 	const adressQuery = `
-		SELECT p_code, city, name, id
+		SELECT id, name, adresse, p_code, city, website, description
 		FROM locations
 		WHERE id = $1;`
 	const result = await client.query(adressQuery, [id])
 	return result.rows[0]
 	},
-
-	/** Query the water surface of an aoi, by id */
-	queryTimeSeries: async (aid) => {
-	const timeSeriesQuery = `
-		SELECT to_date(dates, 'DD/MM/YYYY') AS d, surface, cloud
-		FROM water_surfaces
-		WHERE aoi_id = $1
-		ORDER BY d;`
-	const result = await client.query(timeSeriesQuery, [ aid ])
-	return result.rows
-	},
-
 
 }

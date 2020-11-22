@@ -14,15 +14,11 @@ export class ApiService {
     return response.data
   }
 
-  getCentroids () {
-    return this.httpGet('aoi/centroids')
+  getMarkers () {
+    return this.httpGet('locations')
   }
 
-  getAOIGeom (id) {
-    return this.httpGet(`aoi/geom/${id}`)
-  }
-
-  getAOISurfaces (id) {
-    return this.httpGet(`aoi/surfaces/${id}`)
+  getDescription (id) {
+    return this.httpGet(`locations/desc/${id}`)
   }
 }
