@@ -1,18 +1,14 @@
 <template>
-  <button v-on:click="resetView">Retour</button>
+  <button v-on:click="resView">Retour</button>
 </template>
 
 <script>
+import { bus } from '../main'
 export default {
   name: 'back-button',
-  data () {
-    return {
-      center: [47.5, 2.4],
-      zoom: 6
-    }
-  },
   methods: {
-    resetView: function () {
+    resView: function () {
+      bus.$emit('clicked')
     }
   }
 }
@@ -24,9 +20,9 @@ button {
   top: 20px;
   left: 20px;
   z-index: 1000;
-  background: #222;
+  background: #C75C5C;
   color: #faebd7;
-  border: 3px #333 solid;
+  border: 3px #C75C5C solid;
   border-radius: 4px;
   padding: 8px;
   text-transform: uppercase;

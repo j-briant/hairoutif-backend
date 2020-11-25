@@ -9,6 +9,7 @@ import 'leaflet.markercluster/dist/leaflet.markercluster-src.js'
 import 'leaflet.markercluster/dist/MarkerCluster.css'
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
 import { ApiService } from './ApiService'
+import { bus } from '../main'
 
 export default {
   name: 'Map',
@@ -17,7 +18,7 @@ export default {
       mapDiv: null,
       api: null,
       layers: {},
-      center: [47.5, 2.4],
+      center: [47, 2.4],
       zoom: 6
     }
   },
@@ -34,7 +35,7 @@ export default {
       this.mapDiv = L.map('mapContainer', {
         minZoom: 5,
         maxBounds: [[41, -6], [52, 10]]
-      }).setView(this.center, 6)
+      }).setView(this.center, this.zoom)
       L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
         subdomains: 'abcd'
@@ -50,9 +51,19 @@ export default {
             icon: L.icon({ iconUrl, iconSize: [30, 30] }),
             title: feature.properties.name
           })
-        }
+        },
+        onEachFeature: this.sendDescription.bind(this)
       })
       this.layers.markerGroup.addLayer(this.layers.markers)
+    },
+    sendDescription (feature, layer) {
+      layer.on({
+        click: async (e) => {
+          const desc = await this.api.getDescription(feature.properties.id)
+          this.mapDiv.flyTo([feature.coordinates[1], feature.coordinates[0]], 15, { duration: 0.5 })
+          bus.$emit('markerClicked', desc)
+        }
+      })
     },
     async loadMapData () {
       const geojson = await this.api.getMarkers()
@@ -65,6 +76,12 @@ export default {
     this.initializeApi()
     this.setupLeafletMap()
     this.loadMapData()
+  },
+
+  created () {
+    bus.$on('clicked', () => {
+      this.mapDiv.setView(this.center, this.zoom)
+    })
   }
 }
 
@@ -72,6 +89,7 @@ export default {
 
 <style scoped>
  #mapContainer {
+  margin: 0;
   width: 100vw;
   height: 100vh;
 }

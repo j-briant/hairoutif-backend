@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 
 Vue.config.productionTip = true
+export const bus = new Vue()
 
 new Vue({
   router,
