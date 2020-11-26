@@ -33,8 +33,8 @@ export default {
     },
     setupLeafletMap: function () {
       this.mapDiv = L.map('mapContainer', {
-        minZoom: 5,
-        maxBounds: [[41, -6], [52, 10]]
+      /* minZoom: 5 ,
+        maxBounds: [[41, -6], [52, 10]] */
       }).setView(this.center, this.zoom)
       L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
@@ -59,6 +59,7 @@ export default {
     sendDescription (feature, layer) {
       layer.on({
         click: async (e) => {
+          console.log(feature)
           const desc = await this.api.getDescription(feature.properties.id)
           this.mapDiv.flyTo([feature.coordinates[1], feature.coordinates[0]], 15, { duration: 0.5 })
           bus.$emit('markerClicked', desc)

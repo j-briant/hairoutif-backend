@@ -23,8 +23,8 @@ module.exports = {
 	/** Query the geometry of each AOI */
 	queryLocations: async () => {
 	const locationQuery = `
-		SELECT ST_AsGeoJSON(geom), name, id
-		FROM locations;`
+		SELECT ST_AsGeoJSON(way), name, osm_id
+		FROM planet_osm_point;`
 	const result = await client.query(locationQuery)
 	return result.rows
 	},
@@ -33,9 +33,9 @@ module.exports = {
 	/** Query the centroid of each polygon */
 	queryDescription: async (id) => {
 	const adressQuery = `
-		SELECT id, name, adresse, p_code, city, website, description
-		FROM locations
-		WHERE id = $1;`
+		SELECT osm_id, name, "addr:street", "addr:postcode", "addr:city"
+		FROM planet_osm_point
+		WHERE osm_id = $1;`
 	const result = await client.query(adressQuery, [id])
 	return result.rows[0]
 	},

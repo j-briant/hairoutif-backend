@@ -22,10 +22,11 @@ export default {
   },
   created () {
     bus.$on('markerClicked', (desc) => {
+      console.log(desc)
       this.name = desc.name
-      this.adresse = desc.adresse
-      this.pCode = desc.p_code
-      this.city = desc.city
+      this.adresse = desc['addr:street']
+      this.pCode = desc['addr:postcode']
+      this.city = desc['addr:city']
       this.website = desc.website
     })
   }
