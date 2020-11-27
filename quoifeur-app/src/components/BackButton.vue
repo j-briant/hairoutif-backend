@@ -1,5 +1,5 @@
 <template>
-  <button v-on:click="resView">Retour</button>
+  <button v-on:click="resView">Reset View</button>
 </template>
 
 <script>
@@ -17,7 +17,7 @@ export default {
 <style>
 button {
   position: absolute;
-  top: 20px;
+  top: 50%;
   left: 20px;
   z-index: 1000;
   background: #C75C5C;

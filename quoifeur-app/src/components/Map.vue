@@ -59,9 +59,8 @@ export default {
     sendDescription (feature, layer) {
       layer.on({
         click: async (e) => {
-          console.log(feature)
           const desc = await this.api.getDescription(feature.properties.id)
-          this.mapDiv.flyTo([feature.coordinates[1], feature.coordinates[0]], 15, { duration: 0.5 })
+          // this.mapDiv.flyTo([feature.coordinates[1], feature.coordinates[0]], 15, { duration: 0.5 })
           bus.$emit('markerClicked', desc)
         }
       })

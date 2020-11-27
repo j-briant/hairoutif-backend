@@ -40,4 +40,26 @@ module.exports = {
 	return result.rows[0]
 	},
 
+	/** Query most common names */
+	queryTopNames: async () => {
+		const topQuery = `
+			SELECT DISTINCT name, COUNT(*) AS n
+				FROM planet_osm_point
+			GROUP BY name
+			ORDER BY n DESC
+			LIMIT 10;`
+		const result = await client.query(topQuery, [])
+		return result.rows
+	},
+
+	queryDistribution: async () => {
+		const distrQuery = `
+			SELECT
+				SUM(CASE WHEN LOWER(NAME) LIKE '%'||'tif'||'%' THEN 1 ELSE 0 END) AS tifCount,
+				SUM(CASE WHEN LOWER(NAME) LIKE '%'||'hair'||'%' THEN 1 ELSE 0 END) AS hairCount
+			FROM planet_osm_point;`
+		const result = await client.query(distrQuery, [])
+		return result.rows[0]
+	}
+
 }

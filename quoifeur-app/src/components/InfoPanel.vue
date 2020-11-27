@@ -1,7 +1,7 @@
 <template>
   <div id="descContainer">
     <div id="title"><h1>{{name}}</h1></div>
-    <div id="adresse">{{adresse}}, {{pCode}}, {{city}}</div>
+    <div id="adresse">{{adresse}} {{pCode}} {{city}}</div>
     <div id="website">{{website}}</div>
   </div>
 </template>
@@ -13,7 +13,7 @@ export default {
   name: 'info-panel',
   data () {
     return {
-      name: null,
+      name: 'Hair ou Tif?',
       adresse: null,
       pCode: null,
       city: null,
@@ -22,7 +22,6 @@ export default {
   },
   created () {
     bus.$on('markerClicked', (desc) => {
-      console.log(desc)
       this.name = desc.name
       this.adresse = desc['addr:street']
       this.pCode = desc['addr:postcode']
@@ -45,8 +44,8 @@ export default {
     left: 20px;
     border: 3px #C75C5C solid;
     border-radius: 4px;
-    background: #faebd7;
-    color: #C75C5C;
+    background: #C75C5C;
+    color: #faebd7;
     text-align: center;
     font-family: 'Lato', sans-serif;
   }

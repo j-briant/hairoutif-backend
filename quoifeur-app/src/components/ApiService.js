@@ -21,4 +21,12 @@ export class ApiService {
   getDescription (id) {
     return this.httpGet(`locations/desc/${id}`)
   }
+
+  getDistribution () {
+    return this.httpGet('distr')
+  }
+
+  getTop () {
+    return this.httpGet('top')
+  }
 }

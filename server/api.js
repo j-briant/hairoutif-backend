@@ -8,13 +8,13 @@ const validate = require('koa-joi-validate');
 
 const router = new Router();
 
-/*
+
 // Check cache before continuing to any endpoint handlers
 router.use(cache.checkResponseCache)
 
 // Insert response into cache once handlers have finished
 router.use(cache.addResponseToCache)
-*/
+
 
 // Check that id param is valid number
 const idValidator = {
@@ -67,6 +67,32 @@ descRoute =
 		}
 }
 
-router.route([quoifeurGeomRoute, descRoute])
+// Get top names
+topRoute = 
+{
+	method: 'get',
+	path: '/top',
+	handler: async ctx => {
+		const result = await database.queryTopNames()
+		if (!result) {ctx.throw(404)}
+
+		ctx.body = result
+		}
+}
+
+// Get distribution
+distrRoute = 
+{
+	method: 'get',
+	path: '/distr',
+	handler: async ctx => {
+		const result = await database.queryDistribution()
+		if (!result) {ctx.throw(404)}
+
+		ctx.body = result
+		}
+}
+
+router.route([quoifeurGeomRoute, descRoute, topRoute, distrRoute])
 
 module.exports = router
