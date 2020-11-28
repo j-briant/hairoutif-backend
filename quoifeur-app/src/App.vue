@@ -1,25 +1,32 @@
 <template>
   <div id="app">
-    <Map></Map>
+    <!--
     <back-button></back-button>
-    <info-panel></info-panel>
     <Bar></Bar>
+    <info-panel></info-panel>-->
+    <PanelButton></PanelButton>
+    <left-panel></left-panel>
+    <Map></Map>
   </div>
 </template>
 
 <script>
 import Map from '@/components/Map.vue'
-import BackButton from '@/components/BackButton.vue'
-import InfoPanel from '@/components/InfoPanel.vue'
-import Bar from '@/components/Bar.vue'
+// import BackButton from '@/components/BackButton.vue'
+// import InfoPanel from '@/components/InfoPanel.vue'
+// import Bar from '@/components/Bar.vue'
+import PanelButton from '@/components/PanelButton.vue'
+import LeftPanel from '@/components/LeftPanel.vue'
 
 export default {
   name: 'App',
   components: {
-    Bar,
+    // Bar,
     Map,
-    BackButton,
-    InfoPanel
+    // BackButton,
+    // InfoPanel,
+    PanelButton,
+    LeftPanel
   }
 }
 </script>

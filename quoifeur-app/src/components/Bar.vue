@@ -128,10 +128,11 @@ export default {
   #chart {
     position: absolute;
     top: 0px;
+    right: 10px;
     padding: 0px;
     margin: 0px;
-    width: 100%;
-    background: #222;
+    width: 50%;
+    background: transparent;
     z-index: 1000;
   }
 </style>

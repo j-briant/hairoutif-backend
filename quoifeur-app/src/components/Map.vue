@@ -89,8 +89,9 @@ export default {
 
 <style scoped>
  #mapContainer {
+  z-index: 0;
   margin: 0;
-  width: 100vw;
+  width: auto;
   height: 100vh;
 }
 </style>
