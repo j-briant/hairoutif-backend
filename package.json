@@ -1,7 +1,7 @@
 {
-  "name": "world-lakes",
+  "name": "hairoutif",
   "version": "1.0.0",
-  "description": "Trying to work on lake surfaces data. Using Node.js and PostGIS.",
+  "description": "Back-end for very important app.",
   "main": "index.js",
   "scripts": {
     "serve": "webpack --watch & http-server ./public",
