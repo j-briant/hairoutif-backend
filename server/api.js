@@ -44,7 +44,7 @@ quoifeurGeomRoute =
 		// Add row metadata as geojson properties
 		const markers = result.map((row) => {
 			let mark = JSON.parse(row.st_asgeojson)
-			mark.properties = {name: row.name, id: row.osm_id}
+			mark.properties = {name: row.name, id: row.fid}
 			return mark
 		})
 		
