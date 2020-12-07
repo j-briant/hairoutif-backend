@@ -91,6 +91,7 @@ export default {
     bus.$on('clicked', () => {
       this.mapDiv.setView(this.center, this.zoom)
     })
+    bus.$on('regionSelected', e => this.mapDiv.flyToBounds(e.bounds, { duration: 1 }))
   }
 }
 
@@ -98,10 +99,12 @@ export default {
 
 <style>
  #mapContainer {
+  position: relative;
+  left: 0;
   z-index: 0;
   margin: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 
 .leaflet-popup-content-wrapper,

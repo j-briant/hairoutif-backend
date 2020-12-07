@@ -1,12 +1,13 @@
 <template>
   <div id="chart">
-    <apexchart height=100px type="bar" :options="chartOptions" :series="series"></apexchart>
+    <apexchart height=100%  width=95% type="bar" :options="chartOptions" :series="series"></apexchart>
   </div>
 </template>
 
 <script>
 import VueApexCharts from 'vue-apexcharts'
-import { ApiService } from './ApiService'
+import { store, utils } from '@/store'
+import { bus } from '@/main'
 
 export default {
   name: 'barChart',
@@ -24,7 +25,7 @@ export default {
       }],
       chartOptions: {
         title: {
-          text: 'Plus de Tif ou plus de Hair?',
+          text: 'Plus de Hair ou plus de Tif?',
           align: 'center',
           offsetY: 5,
           style: {
@@ -98,16 +99,8 @@ export default {
     }
   },
   methods: {
-    initializeApi: function () {
-      // Initialize API service
-      if (window.location.hostname === 'localhost') {
-        this.api = new ApiService('http://localhost:5000/')
-      } else {
-        this.api = new ApiService('http://localhost:5000/')
-      }
-    },
-    async getDistr () {
-      const distr = await this.api.getDistribution()
+    async getDistr (id) {
+      const distr = await store.api.getDistribution(id)
       this.series = [{
         name: 'Hair',
         data: [parseInt(distr.haircount)]
@@ -118,21 +111,21 @@ export default {
     }
   },
   created () {
-    this.initializeApi()
-    this.getDistr()
+    utils.initializeApi()
+    this.getDistr(1)
+    bus.$on('regionSelected', e => this.getDistr(e.rid))
   }
 }
 </script>
 
 <style>
   #chart {
-    position: absolute;
-    top: 0px;
-    right: 10px;
+    position: relative;
     padding: 0px;
     margin: 0px;
-    width: 50%;
-    background: transparent;
+    width: 100%;
+    height: 100%;
+    background: #333;
     z-index: 1000;
   }
 </style>

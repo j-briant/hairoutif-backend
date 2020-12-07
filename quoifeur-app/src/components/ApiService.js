@@ -8,8 +8,8 @@ export class ApiService {
   }
 
   async httpGet (endpoint = '') {
-    this.cancelToken.cancel('Cancelled Ongoing Request')
-    this.cancelToken = CancelToken.source()
+    // this.cancelToken.cancel('Cancelled Ongoing Request')
+    // this.cancelToken = CancelToken.source()
     const response = await get(`${this.url}${endpoint}`, { cancelToken: this.cancelToken.token })
     return response.data
   }
@@ -22,11 +22,15 @@ export class ApiService {
     return this.httpGet(`locations/desc/${id}`)
   }
 
-  getDistribution () {
-    return this.httpGet('distr')
+  getDistribution (id) {
+    return this.httpGet(`distr/${id}`)
   }
 
-  getTop () {
-    return this.httpGet('top')
+  getTop (id) {
+    return this.httpGet(`top/${id}`)
+  }
+
+  getRegions () {
+    return this.httpGet('regions')
   }
 }

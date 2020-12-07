@@ -2,7 +2,7 @@
   <div v-if="isOverlayOpen" class="overlay">
     <div class="intro-container">
       <h1>Hair ou Tif?</h1>
-      <div id="intro"><p>Ce site est un hommage à tou.te.s les coiffeuses et coiffeurs à l'âme créative et au nom improbable.</p></div>
+      <div id="intro"><p>Car il y a des sujets d'importance capitale, on se doit parfois d'essayer d'y amener des réponses. Ce site est un hommage à tou.te.s les coiffeuses et coiffeurs à l'âme créative et au nom improbable.</p></div>
       <overlay-button></overlay-button>
     </div>
   </div>
@@ -21,7 +21,7 @@ export default {
   },
   computed: {
     isOverlayOpen () {
-      return store.isOverlayOpen
+      return store.isIntroOpen
     }
   }
 }

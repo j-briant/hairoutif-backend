@@ -50,14 +50,14 @@ export default {
 
 .sidebar-panel {
   display: block;
-    overflow-y: auto;
-    background-color: #111;
-    position: fixed;
-    right: 0;
-    top: 50px;
-    z-index: 10;
-    padding: 0rem;
-    width: 150px;
+  overflow-y: auto;
+  background-color: #111;
+  position: fixed;
+  right: 0;
+  top: 50px;
+  z-index: 10;
+  padding: 0rem;
+  width: 150px;
 }
 
 </style>

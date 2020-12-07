@@ -14,7 +14,7 @@ export default {
   name: 'overlay-button',
   computed: {
     isOverlayActive () {
-      return store.isOverlayOpen
+      return store.isIntroOpen
     }
   },
   methods: {

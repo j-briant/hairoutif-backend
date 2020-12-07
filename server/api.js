@@ -32,7 +32,27 @@ router.get('/time', async ctx => {
 	ctx.body = result
 })
 
-// Get AOI geometry by id route
+// Get regions route
+regionsGeomRoute = 
+{
+	method: 'get',
+	path: '/regions',
+	handler: async ctx => {
+		const result = await database.queryRegions()
+		if (result.length === 0) {ctx.throw(404)}
+
+		// Add row metadata as geojson properties
+		const areas = result.map((row) => {
+			let region = JSON.parse(row.st_asgeojson)
+			region.properties = {name: row.nom, id: row.id, loc: row.loc}
+			return region
+		})
+		
+		ctx.body = areas
+	}
+}
+
+// Get location  route
 quoifeurGeomRoute = 
 {
 	method: 'get',
@@ -71,9 +91,11 @@ descRoute =
 topRoute = 
 {
 	method: 'get',
-	path: '/top',
+	path: '/top/:id',
+	validate: idValidator,
 	handler: async ctx => {
-		const result = await database.queryTopNames()
+		const id = ctx.params.id
+		const result = await database.queryTopNames(id)
 		if (!result) {ctx.throw(404)}
 
 		ctx.body = result
@@ -84,15 +106,17 @@ topRoute =
 distrRoute = 
 {
 	method: 'get',
-	path: '/distr',
+	path: '/distr/:id',
+	validate: idValidator,
 	handler: async ctx => {
-		const result = await database.queryDistribution()
+		const id = ctx.params.id
+		const result = await database.queryDistribution(id)
 		if (!result) {ctx.throw(404)}
 
 		ctx.body = result
 		}
 }
 
-router.route([quoifeurGeomRoute, descRoute, topRoute, distrRoute])
+router.route([quoifeurGeomRoute, regionsGeomRoute, descRoute, topRoute, distrRoute])
 
 module.exports = router

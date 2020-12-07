@@ -20,6 +20,15 @@ module.exports = {
 	return result.rows[0]
 	},
 
+	/** Query the geometry of each region */
+	queryRegions: async () => {
+	const regionsQuery = `
+		SELECT ST_AsGeoJSON(ST_SimplifyPreserveTopology(geom, 0.03)), nom, id, loc
+		FROM regions;`
+	const result = await client.query(regionsQuery)
+	return result.rows
+	},
+
 	/** Query the geometry of each AOI */
 	queryLocations: async () => {
 	const locationQuery = `
@@ -28,7 +37,6 @@ module.exports = {
 	const result = await client.query(locationQuery)
 	return result.rows
 	},
-
 
 	/** Query the centroid of each polygon */
 	queryDescription: async (id) => {
@@ -41,24 +49,36 @@ module.exports = {
 	},
 
 	/** Query most common names */
-	queryTopNames: async () => {
+	queryTopNames: async (id) => {
 		const topQuery = `
-			SELECT DISTINCT name, COUNT(*) AS n
-				FROM locations
-			GROUP BY name
+			WITH reg (geom) AS ( 	
+				SELECT geom 	
+				FROM regions 	
+				WHERE id = $1
+				) 
+			SELECT DISTINCT locations.name, COUNT(*) AS n 
+			FROM locations, reg 
+			WHERE ST_Within(locations.way, reg.geom) = True
+			GROUP BY locations.name
 			ORDER BY n DESC
 			LIMIT 10;`
-		const result = await client.query(topQuery, [])
+		const result = await client.query(topQuery, [id])
 		return result.rows
 	},
 
-	queryDistribution: async () => {
+	queryDistribution: async (id) => {
 		const distrQuery = `
+			WITH reg (geom) AS ( 	
+				SELECT geom 	
+				FROM regions 	
+				WHERE id = $1
+				) 
 			SELECT
 				SUM(CASE WHEN LOWER(NAME) LIKE '%'||'tif'||'%' THEN 1 ELSE 0 END) AS tifCount,
 				SUM(CASE WHEN LOWER(NAME) LIKE '%'||'hair'||'%' THEN 1 ELSE 0 END) AS hairCount
-			FROM locations;`
-		const result = await client.query(distrQuery, [])
+			FROM locations, reg
+			WHERE ST_Within(locations.way, reg.geom) = True;`
+		const result = await client.query(distrQuery, [id])
 		return result.rows[0]
 	}
 
