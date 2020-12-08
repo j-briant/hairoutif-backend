@@ -1,10 +1,8 @@
 <template>
   <form class="vue-form" @submit.prevent="submit">
-
     <div class="error-message">
       <p v-show="!email.valid">Entrez une adresse mail valide svp.</p>
     </div>
-
     <fieldset>
       <div>
         <label class="label" for="name">Nom</label>
@@ -16,7 +14,6 @@
                :class="{ email , error: !email.valid }"
                v-model="email.value" placeholder="john@doe.com">
       </div>
-
       <div>
         <label class="label" for="textarea">Message</label>
         <textarea class="message" name="textarea" id="textarea" required=""
@@ -33,6 +30,7 @@
 </template>
 
 <script type="text/javascript">
+import { mutation, store, utils } from '@/store'
 
 const emailRegExp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
 
@@ -53,8 +51,13 @@ export default {
   },
   methods: {
     // submit form handler
-    submit: function () {
+    async submit () {
       this.submitted = true
+      store.api.postForm({
+        name: this.name,
+        mail: this.email.value,
+        msg: this.message.text
+      }).then(mutation.removeOverlay())
     },
     // validate by type and value
     validate: function (type, value) {
@@ -72,11 +75,14 @@ export default {
     'email.value': function (value) {
       this.validate('email', value)
     }
+  },
+  mounted () {
+    utils.initializeApi()
   }
 }
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
 *,
 *::after,
 *::before {

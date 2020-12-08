@@ -3,6 +3,8 @@
     <IntroOverlay/>
     <Overlay/>
     <nav class="main-nav">
+      <a title="logo" class="logo" href="/"><img src="../dist/img/logo.png"></a>
+      <a title="hairoutif" href="/"><span title="hairoutif">HAIROUTIF</span></a>
       <PanelButton/>
     </nav>
     <body>
@@ -65,13 +67,21 @@ export default {
 
   .main-nav {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    color: #FFF;
     position: relative;
     top: 0;
     width: 100vw;
     padding: 10px 0;
     background: #111;
     z-index: 10;
+ }
+
+ .logo > img {
+    margin-left: 10px;
+    width: 32px;
  }
 
  ul.sidebar-panel-nav {

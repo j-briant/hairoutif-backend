@@ -80,6 +80,13 @@ module.exports = {
 			WHERE ST_Within(locations.way, reg.geom) = True;`
 		const result = await client.query(distrQuery, [id])
 		return result.rows[0]
-	}
+	},
 
+	formReception: async (mail, name, message) => {
+		const appendMessageQuery = `
+			INSERT INTO messages(name, mail, msg)
+			VALUES ($1, $2, $3)`
+		const result = await client.query(appendMessageQuery, [mail, name, message])
+		return result.rows[0]
+	}
 }

@@ -4,10 +4,13 @@ const database = require('./database');
 const cache = require('./cache');
 const joi = Router.Joi; //require('joi')
 const validate = require('koa-joi-validate');
+const KoaBody = require('koa-bodyparser')
 
 
 const router = new Router();
 
+// Body parser
+router.use(KoaBody())
 
 // Check cache before continuing to any endpoint handlers
 router.use(cache.checkResponseCache)
@@ -33,8 +36,7 @@ router.get('/time', async ctx => {
 })
 
 // Get regions route
-regionsGeomRoute = 
-{
+regionsGeomRoute = {
 	method: 'get',
 	path: '/regions',
 	handler: async ctx => {
@@ -53,8 +55,7 @@ regionsGeomRoute =
 }
 
 // Get location  route
-quoifeurGeomRoute = 
-{
+quoifeurGeomRoute = {
 	method: 'get',
 	path: '/locations',
 	handler: async ctx => {
@@ -73,8 +74,7 @@ quoifeurGeomRoute =
 }
 
 // Get surface time series route
-descRoute = 
-{
+descRoute = {
 	method: 'get',
 	path: '/locations/desc/:id',
 	validate: idValidator,
@@ -88,8 +88,7 @@ descRoute =
 }
 
 // Get top names
-topRoute = 
-{
+topRoute = {
 	method: 'get',
 	path: '/top/:id',
 	validate: idValidator,
@@ -103,8 +102,7 @@ topRoute =
 }
 
 // Get distribution
-distrRoute = 
-{
+distrRoute = {
 	method: 'get',
 	path: '/distr/:id',
 	validate: idValidator,
@@ -117,6 +115,19 @@ distrRoute =
 		}
 }
 
-router.route([quoifeurGeomRoute, regionsGeomRoute, descRoute, topRoute, distrRoute])
+// Form answer 
+formRoute = {
+	method: 'post',
+	path: '/form',
+	type: 'json',
+	handler: async ctx => {
+		const data = ctx.request.body.d
+		const result = await database.formReception(data.name, data.mail, data.msg)
+			.then(ctx.status = 200)
+			.catch( error => ctx.throw(500))
+	}
+}
+
+router.route([quoifeurGeomRoute, regionsGeomRoute, descRoute, topRoute, distrRoute, formRoute])
 
 module.exports = router

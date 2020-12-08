@@ -1,4 +1,4 @@
-import { CancelToken, get } from 'axios'
+import { CancelToken, get, post } from 'axios'
 
 /** API Wrapper Service Class */
 export class ApiService {
@@ -12,6 +12,13 @@ export class ApiService {
     // this.cancelToken = CancelToken.source()
     const response = await get(`${this.url}${endpoint}`, { cancelToken: this.cancelToken.token })
     return response.data
+  }
+
+  async httpPost (endpoint = '', data) {
+    this.cancelToken.cancel('Cancelled Ongoing Request')
+    this.cancelToken = CancelToken.source()
+    const response = await post(`${this.url}${endpoint}`, { cancelToken: this.cancelToken.token, d: data })
+    return response
   }
 
   getMarkers () {
@@ -32,5 +39,9 @@ export class ApiService {
 
   getRegions () {
     return this.httpGet('regions')
+  }
+
+  postForm (data) {
+    return this.httpPost('form', data)
   }
 }
