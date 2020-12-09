@@ -48,15 +48,15 @@ export default {
       this.martiniqueDiv = L.map('martinique-map', {
         zoomControl: false,
         attributionControl: false
-      }).fitBounds([[14.45, -61], [14.9, -60.9]])
+      }).fitBounds([[14.2, -61.2], [15, -60.8]])
       this.guadeloupeDiv = L.map('guadeloupe-map', {
         zoomControl: false,
         attributionControl: false
-      }).fitBounds([[15.9, -61.65], [16.5, -61.35]])
+      }).fitBounds([[15.8, -61.65], [16.6, -61.35]])
       this.mayotteDiv = L.map('mayotte-map', {
         zoomControl: false,
         attributionControl: false
-      }).fitBounds([[-12.65, 45], [-13, 45.2]])
+      }).fitBounds([[-12.5, 45], [-13.1, 45.2]])
       this.reunionDiv = L.map('reunion-map', {
         zoomControl: false,
         attributionControl: false
@@ -129,7 +129,11 @@ export default {
     height: 100%;
     width: 100%;
     z-index: 100;
-    background: #333;
+    background: transparent;
+  }
+
+  #main-map:hover {
+    background: #222;
   }
 
   #guyane-map {
@@ -139,10 +143,8 @@ export default {
     left: 0;
     bottom: 0%;
     z-index: 100;
-    background: #333;
     border: 2px solid #FFF;
-    border-left: 0px;
-
+    background: transparent;
   }
 
   #martinique-map {
@@ -152,9 +154,9 @@ export default {
     left: 0;
     bottom: 30%;
     z-index: 100;
-    background: #333;
     border: 2px solid #FFF;
-    border-left: 0px;
+    border-bottom: 0px;
+    background: transparent;
   }
 
   #guadeloupe-map {
@@ -164,10 +166,10 @@ export default {
     left: 0;
     bottom: 60%;
     z-index: 100;
-    background: #333;
     border: 2px solid #FFF;
-    border-left: 0px;
-  }
+    border-bottom: 0px;
+    background: transparent;
+}
 
   #mayotte-map {
     position: absolute;
@@ -176,9 +178,8 @@ export default {
     right: 0;
     bottom: 0%;
     z-index: 100;
-    background: #333;
     border: 2px solid #FFF;
-    border-right: 0px;
+    background: transparent;
   }
 
   #reunion-map {
@@ -188,9 +189,9 @@ export default {
     right: 0;
     bottom: 30%;
     z-index: 100;
-    background: #333;
     border: 2px solid #FFF;
-    border-right: 0px;
+    background: transparent;
+    border-bottom: 0px;
   }
 
 </style>

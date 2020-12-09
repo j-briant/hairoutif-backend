@@ -3,7 +3,7 @@
       <div class="pane-title" v-on:click="closeLeftPanel">Data</div>
       <Bar class="bar-graph"></Bar>
       <TopList class="top-list"></TopList>
-      <MiniMap class="mini-map"></MiniMap>s
+      <MiniMap class="mini-map"></MiniMap>
     </div>
 </template>
 
@@ -42,8 +42,7 @@ export default {
 
 .pane-title:hover {
   cursor: pointer;
-  background: #333;
-  transition: all 150ms ease-in 0s
+  background: #222;
 }
 
 .bar-graph {
@@ -74,15 +73,17 @@ export default {
   top: 0;
   left: 0;
   padding: 0 0 0 10px;
-  column-gap: 5px;
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
   z-index: 10;
   height: 100%;
   width: 40%;
+  transform: translateX(-90%);
   transition: all 150ms ease-in 0s
 }
 
 .active {
-  transform: translateX(-90%);
+  transform: translateX(0);
   transition: all 150ms ease-in 0s
 }
 

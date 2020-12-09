@@ -79,7 +79,7 @@ p {
   padding-bottom: 1.5em;
 }
 
-a {
+.osm-link {
   color: #42c600;
   font-weight: bold;
   text-decoration: none;

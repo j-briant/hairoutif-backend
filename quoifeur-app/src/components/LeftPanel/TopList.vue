@@ -34,23 +34,23 @@ export default {
 
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
   .list {
-    padding: 5px 0;
-  }
-
-  ol {
     position: relative;
     display: flex;
     flex-direction: column;
     height: 100%;
     margin: 0;
-    background: #333;
+    color: #FFF;
+  }
+
+  .list:hover {
+    background: #222;
   }
 
   li {
-    color: #FFF;
     flex-grow: 1;
+    color: #FFF;
   }
 
   li:hover {

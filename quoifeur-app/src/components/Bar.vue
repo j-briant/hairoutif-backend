@@ -125,7 +125,10 @@ export default {
     margin: 0px;
     width: 100%;
     height: 100%;
-    background: #333;
     z-index: 1000;
+  }
+
+  #chart:hover {
+    background: #222;
   }
 </style>

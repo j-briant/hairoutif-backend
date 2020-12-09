@@ -112,10 +112,6 @@ header h1 {
   font-weight: 300;
 }
 
-#app {
-  display: flex;
-}
-
 .vue-form {
   font-size: 16px;
   width: 500px;

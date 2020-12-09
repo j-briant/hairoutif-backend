@@ -4,12 +4,12 @@ import { ApiService } from '@/components/ApiService'
 export const store = Vue.observable({
   overlayName: null,
   overlayDesc: {
-    About: 'Les données utilisées sont issues de <a href="https://www.openstreetmap.org/">OpenStreetMap</a> et mises à jour régulièrement. Si votre commerce n\'apparaît pas et que vous n\'êtes pas satisfait.e, parce que quand même hein, ce qui est tout à fait normal, considérez participer au projet <a href="https://www.openstreetmap.org/">OpenStreetMap</a> et à l\'inclure dans la base de donnée.<br>Si vous n\'êtes pas coiffeur / coiffeuse, et bien rien de particulier.',
+    About: 'Les données utilisées sont issues de <a class="osm-link" href="https://www.openstreetmap.org/">OpenStreetMap</a> et mises à jour régulièrement. Si votre commerce n\'apparaît pas et que vous n\'êtes pas satisfait.e, parce que quand même hein, considérez participer au projet <a class="osm-link" href="https://www.openstreetmap.org/">OpenStreetMap</a> et à l\'inclure dans la base de donnée.<br>Les noms sont extraits automatiquement s\'ils inclus les termes \'tif\' et \'hair\', certains n\'ont aucun jeu de mot et nous nous excusons pour cela.<br>En vous souhaitant de tomber sur les perles rares.',
     Contact: 'Pour toutes réclamations, suggestions, insultes et autres, veuillez remplir le formulaire ci-dessous:'
   },
   isNavOpen: false,
   isIntroOpen: true,
-  isLeftOpen: true,
+  isLeftOpen: false,
   isOverlayOpen: {
     About: false,
     Contact: false

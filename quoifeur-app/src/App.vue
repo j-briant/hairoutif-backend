@@ -4,12 +4,12 @@
     <Overlay/>
     <nav class="main-nav">
       <a title="logo" class="logo" href="/"><img src="../dist/img/logo.png"></a>
-      <a title="hairoutif" href="/"><span title="hairoutif">HAIROUTIF</span></a>
-      <PanelButton/>
+      <a class="title" title="hairoutif" href="/"><span title="hairoutif">HAIROUTIF</span></a>
+      <PanelButton title="menu"/>
     </nav>
     <body>
       <LeftPanel/>
-      <Map></Map>
+      <Map/>
       <Sidebar>
           <menu-list/>
       </Sidebar>
@@ -62,7 +62,6 @@ export default {
     width: 100%;
     height: 100%;
     margin: 0;
-    font-family: 'Helvetica';
   }
 
   .main-nav {
@@ -82,6 +81,13 @@ export default {
  .logo > img {
     margin-left: 10px;
     width: 32px;
+ }
+
+ .title {
+  color: #FFF;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2em;
  }
 
  ul.sidebar-panel-nav {
