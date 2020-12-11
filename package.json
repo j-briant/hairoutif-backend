@@ -4,9 +4,6 @@
   "description": "Back-end for very important app.",
   "main": "index.js",
   "scripts": {
-    "serve": "webpack --watch & http-server ./public",
-    "dev": "NODE_ENV=local npm start & npm run serve",
-    "build": "NODE_env=production webpack",
     "start": "node index.js"
   },
   "keywords": [
