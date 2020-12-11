@@ -1,10 +1,6 @@
 // Cache configuration
 const Redis = require('ioredis')
-if (process.env.REDIS_URL) {
-  const redis = new Redis(process.env.REDIS_URL)
-} else {
-  const redis = new Redis(process.env.REDIS_PORT, REDIS_HOST)
-}
+const redis = new Redis(process.env.REDIS_URL) || new Redis(process.env.REDIS_PORT, process.env.REDIS_HOST)
 
 module.exports = {
   /** Koa middleware function to check cache before continuing to any endpoint handlers */
