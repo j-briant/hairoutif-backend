@@ -9,6 +9,8 @@ const client = new postgres.Client({ connectionString })
 
 // Connect to the DB
 client.connect().then(() => {
+	log.info(`Connection string: ${connectionString}`)
+	log.info(`Client: ${client}`)
 	log.info(`Connected to ${client.database} at ${client.host}: ${client.port}`)
 }).catch(log.error)
 
