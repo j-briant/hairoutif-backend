@@ -2,6 +2,7 @@
 A learning project about web-mapping, hair dressers and puns. This project is divided into two sub divisions: 
 - the present repository hosts the backend of the project.
 - the frontend can be found at https://github.com/j-briant/hairoutif-frontend.
+
 No pretention whatsoever, this respository has no fundamental purpose for the global function of the world. You might just find here a beginning of structure for a similar project. You can try to clone and run this project but I won't help you, because there is no point and also I don't want to.
 The stack is developped using Node.js, PostgreSQL and Redis.
 ## 1. Node.js
