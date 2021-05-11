@@ -43,7 +43,7 @@ npm install
 ```
 This should trigger the installation of the npm repositories mentionned in the package.json file.
 
-2. Then create a ".env" file using the ".env.example" provided. You should just change the username and password to your PostgreSQL database.
+2. Then create a ".env" file using the ".env.example" provided.
 
 # Usage
 The architecture consist of 2 main things:
@@ -53,7 +53,7 @@ The architecture consist of 2 main things:
 The database server is your PostGres server.
 Once the install is succesful, you can start the backend server by typing in your terminal:
 ```shell
-npm start
+redis-server & npm start
 ```
 
 Hopefully, no errors!
@@ -62,4 +62,4 @@ Then you can visit [http://localhost:5000/locations/desc/1](http://localhost:500
 curl http://localhost:5000/locations/desc/1
 ```
 
-<img src="https://ih1.redbubble.net/image.1323559437.3240/pp,840x830-pad,1000x1000,f8f8f8.jpg" alt="aw yiss" width="300"/># base-app
+<img src="https://ih1.redbubble.net/image.1323559437.3240/pp,840x830-pad,1000x1000,f8f8f8.jpg" alt="aw yiss" width="300"/>
