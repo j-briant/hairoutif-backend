@@ -1,8 +1,9 @@
-![ill. image](app_screen.png)
-
-# Requirements
-For now, this should work on a Linux environment with Node.js. Some tries happened on Windows but unsuccesful so far.
-Hopefully the package.json is full enough, so you shouldn't have to download anything but if you happen to have some troubles with the installation, please let me know with an issue.
+# About
+A learning project about web-mapping, hair dressers and puns. This project is divided into two sub divisions: 
+- the present repository hosts the backend of the project.
+- the frontend can be found at https://github.com/j-briant/hairoutif-frontend.
+No pretention whatsoever, this respository has no fundamental purpose for the global function of the world. You might just find here a beginning of structure for a similar project. You can try to clone and run this project but I won't help you, because there is no point and also I don't want to.
+The stack is developped using Node.js, PostgreSQL and Redis.
 ## 1. Node.js
 Make sure you have Node and npm installed by entering:
 ```shell
@@ -41,32 +42,23 @@ npm install
 ```
 This should trigger the installation of the npm repositories mentionned in the package.json file.
 
-2. Then create a ".env" file using the ".env.example" provided. You should just change the username and password.
+2. Then create a ".env" file using the ".env.example" provided. You should just change the username and password to your PostgreSQL database.
 
 # Usage
-The architecture consist of 3 main things:
+The architecture consist of 2 main things:
 1. The database server
 2. The node server
-3. The app server
 
 The database server is your PostGres server.
-You can start both node and app servers by typing in your terminal:
-```shell
-npm run dev
-```
-
-Or you can keep them independant by running separately:
+Once the install is succesful, you can start the backend server by typing in your terminal:
 ```shell
 npm start
 ```
 
-and 
-
-```shell
-npm run serve
-```
-
 Hopefully, no errors!
-Then you can visit [http://localhost:8080/](http://localhost:8080/).
+Then you can visit [http://localhost:5000/locations/desc/1](http://localhost:5000/locations/desc/1) or request the API:
+```shell
+curl http://localhost:5000/locations/desc/1
+```
 
 <img src="https://ih1.redbubble.net/image.1323559437.3240/pp,840x830-pad,1000x1000,f8f8f8.jpg" alt="aw yiss" width="300"/># base-app
